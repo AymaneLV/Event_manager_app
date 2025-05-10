@@ -1,0 +1,34 @@
+/* Additional or different styles */
+
+.role-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.role-option {
+  padding: 0.6rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-option input {
+  display: none;
+}
+
+.role-option:hover {
+  border-color: #7C4585;
+}
+
+.role-option input:checked + .role-label {
+  color: #7C4585;
+  font-weight: 600;
+}
+
+.role-option input:checked ~ .role-label {
+  color: #7C4585;
+  font-weight: 600;
+  border-color: #7C4585;
+}

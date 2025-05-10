@@ -1,0 +1,9 @@
+.home-page {
+  background: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding-bottom: 2rem;
+  }
+}

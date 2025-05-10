@@ -1,0 +1,66 @@
+.onboarding {
+  padding: 4rem 0;
+  background: #f9f9f9;
+}
+
+.onboarding__container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.onboarding__container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.onboarding__container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.onboarding__options {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.onboarding-card {
+  flex: 1;
+  max-width: 300px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.onboarding-card:hover {
+  transform: translateY(-5px);
+}
+
+.onboarding-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #7C4585;
+}
+
+.onboarding-card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .onboarding__options {
+    flex-direction: column;
+    align-items: center;
+  }
+}

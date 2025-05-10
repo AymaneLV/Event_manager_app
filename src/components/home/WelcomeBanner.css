@@ -1,0 +1,71 @@
+.welcome-banner {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: black;
+}
+
+/* Background Container */
+.welcome-banner__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Background Image */
+.welcome-banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay */
+.welcome-banner__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(124, 69, 133, 0.7); /* Purple overlay */
+  z-index: 2;
+}
+
+/* Content Section */
+.welcome-banner__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 1200px;
+  padding: 2rem;
+  color: white;
+  width: 100%;
+}
+
+/* Headings and Text */
+.welcome-banner__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.welcome-banner__subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #f8f8f8;
+}
+
+/* Event Cards Grid */
+.welcome-banner__events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}

@@ -1,0 +1,106 @@
+.event-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-card__image-container {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.event-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-card__image {
+  transform: scale(1.05);
+}
+
+.event-card__tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #7C4585;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+}
+
+.event-card__content {
+  padding: 16px;
+}
+
+.event-card__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.event-card__date {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.event-card__price {
+  font-weight: 600;
+  color: #7C4585;
+  margin-bottom: 12px;
+}
+
+.event-card__host-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.event-card__host-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.event-card__followers {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.event-card__details-btn {
+  background: #7C4585;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.event-card__details-btn:hover {
+  background: #6a3a73;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .event-card {
+    max-width: 100%;
+  }
+}

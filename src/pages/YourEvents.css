@@ -1,0 +1,27 @@
+/* Import styles from MyTickets.css */
+@import url('./MyTickets.css');
+/* Additional or different styles for YourEvents.css */
+.your-events-container {
+    background-color: #f8f9fa; /* Different background for YourEvents */
+    padding: 20px;
+}
+
+.your-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.your-events-title {
+    font-size: 2rem;
+    color: #4a4a4a;
+}
+
+/* Override any specific styles from MyTickets.css */
+.event-card {
+    border-radius: 10px; /* Different border-radius for event cards */
+}
+
+.event-price {
+    color: #ff4500; /* Different price color */
+}

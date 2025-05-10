@@ -1,0 +1,151 @@
+/* Flexbox Utilities */
+.u-flex {
+  display: flex;
+}
+
+.u-flex-column {
+  flex-direction: column;
+}
+
+.u-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.u-flex-justify-center {
+  justify-content: center;
+}
+
+.u-flex-justify-between {
+  justify-content: space-between;
+}
+
+.u-flex-align-center {
+  align-items: center;
+}
+
+.u-flex-gap {
+  gap: var(--spacing-2);
+}
+
+.u-flex-gap-md {
+  gap: var(--spacing-4);
+}
+
+.u-flex-gap-lg {
+  gap: var(--spacing-6);
+}
+
+/* Grid Utilities */
+.u-grid {
+  display: grid;
+}
+
+.u-grid-columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.u-grid-columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.u-grid-gap {
+  gap: var(--spacing-4);
+}
+
+.u-grid-gap-md {
+  gap: var(--spacing-6);
+}
+
+/* Margin & Padding */
+.u-margin-top {
+  margin-top: var(--spacing-4);
+}
+
+.u-margin-bottom {
+  margin-bottom: var(--spacing-4);
+}
+
+.u-padding {
+  padding: var(--spacing-4);
+}
+
+.u-padding-vertical {
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+}
+
+.u-padding-horizontal {
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+/* Text Alignment */
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+/* Visibility */
+.u-hidden {
+  display: none !important;
+}
+
+/* Responsive Helpers */
+@media (max-width: 768px) {
+  .u-md-hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .u-md-show {
+    display: none !important;
+  }
+}
+
+/* Scrollable */
+.u-overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* Background */
+.u-bg-white {
+  background-color: var(--white);
+}
+
+.u-bg-gray-light {
+  background-color: var(--gray-light);
+}
+
+.u-bg-primary {
+  background-color: var(--primary);
+}
+
+/* Border */
+.u-border {
+  border: 1px solid var(--gray-medium);
+}
+
+.u-border-radius {
+  border-radius: var(--radius-md);
+}
+
+.u-border-top {
+  border-top: 1px solid var(--gray-medium);
+}
+
+.u-border-bottom {
+  border-bottom: 1px solid var(--gray-medium);
+}
+
+/* Shadow */
+.u-shadow {
+  box-shadow: var(--shadow-md);
+}
+
+.u-shadow-hover:hover {
+  box-shadow: var(--shadow-lg);
+}
