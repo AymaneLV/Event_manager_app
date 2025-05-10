@@ -2,16 +2,16 @@
  * Form validation utilities 
  */
 
-// ✅ Add missing import for isValidPrice
-import { isValidEmail, isValidPassword, isValidPrice } from '../currencyConverter';
+// Keep only valid import
+import { isValidPrice } from './currencyConverter';
 
-// Validate email format
+// ✅ Move email validator here
 export const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
-// Validate password strength (min 6 chars, 1 number, 1 letter)
+// ✅ Move password validator here
 export const isValidPassword = (password) => {
   if (password.length < 6) return false;
   const hasNumber = /\d/.test(password);
@@ -61,7 +61,6 @@ export const validateEventForm = (formData) => {
     errors.category = 'Please select a category';
   }
   
-  // ✅ Now works because isValidPrice is imported
   if (formData.price !== undefined && !isValidPrice(formData.price)) {
     errors.price = 'Valid price is required';
   }
@@ -94,6 +93,40 @@ export const validateRegistrationForm = (formData) => {
   
   if (formData.confirmPassword !== formData.password) {
     errors.confirmPassword = 'Passwords do not match';
+  }
+  
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors
+  };
+};
+
+// Validate contact form
+export const validateContactForm = (formData) => {
+  const errors = {};
+  
+  // Full Name
+  if (!formData.name?.trim()) {
+    errors.name = 'Full name is required';
+  }
+  
+  // Phone
+  if (!formData.phone?.trim()) {
+    errors.phone = 'Phone number is required';
+  } else if (!/^[+]?[\d\s\-().]{7,}$/i.test(formData.phone)) {
+    errors.phone = 'Please enter a valid phone number';
+  }
+  
+  // Email
+  if (!formData.email?.trim()) {
+    errors.email = 'Email is required';
+  } else if (!isValidEmail(formData.email)) {
+    errors.email = 'Please enter a valid email';
+  }
+  
+  // Message
+  if (!formData.message?.trim()) {
+    errors.message = 'Message cannot be empty';
   }
   
   return {
