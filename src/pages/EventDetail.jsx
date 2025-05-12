@@ -28,7 +28,7 @@ const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isOrganizer, setIsOrganizer] = useState(false); // Dummy auth check
+  const [isOrganizer] = useState(false);
 
   useEffect(() => {
     // Simulate API call

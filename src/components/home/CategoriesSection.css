@@ -26,17 +26,45 @@
   color: #7C4585;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .categories-section__view-all:hover {
   color: #6a3a73;
+  transform: translateX(3px);
 }
 
 .categories-section__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
+}
+
+/* Mobile horizontal scrolling */
+@media (max-width: 768px) {
+  .categories-section__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .categories-section__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categories-section__grid > * {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+  }
 }
 
 .category-card {
@@ -49,24 +77,39 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .category-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.category-card__icon-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .category-card__icon {
-  height: 60px;
-  width: auto;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #7C4585;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-card__icon {
+  transform: scale(1.1);
 }
 
 .category-card__name {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .category-card__count {
@@ -75,7 +118,36 @@
 }
 
 @media (max-width: 768px) {
+  .categories-section {
+    padding: 3rem 0;
+  }
+
   .categories-section__title {
     font-size: 1.6rem;
   }
+
+  .category-card {
+    padding: 1.2rem;
+  }
+
+  .category-card__icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .category-card__icon {
+    font-size: 1.7rem;
+  color: #7C4585;
+  transition: transform 0.3s ease;
+  }
+}
+
+/* Animation for auto-scroll */
+@keyframes fadeIn {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+.category-card {
+  animation: fadeIn 0.5s ease-out;
 }

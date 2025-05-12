@@ -1,12 +1,12 @@
 .welcome-banner {
   position: relative;
   width: 100%;
-  min-height: 60vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: black;
+  background-color: #000;
 }
 
 /* Background Container */
@@ -24,6 +24,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* Overlay */
@@ -33,7 +34,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(124, 69, 133, 0.7); /* Purple overlay */
+  background: linear-gradient(45deg, rgba(124, 69, 133, 0.9), rgba(72, 42, 107, 0.8));
   z-index: 2;
 }
 
@@ -50,22 +51,79 @@
 
 /* Headings and Text */
 .welcome-banner__title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
   color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .welcome-banner__subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: #f8f8f8;
+  font-size: 1.25rem;
+  margin-bottom: 2.5rem;
+  color: rgba(255,255,255,0.9);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Event Cards Grid */
+/* Event Cards Grid/Carousel */
 .welcome-banner__events {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+/* Mobile Carousel Styles */
+@media (max-width: 768px) {
+  .welcome-banner {
+    min-height: 80vh;
+  }
+
+  .welcome-banner__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-banner__subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .welcome-banner__events {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1.5rem;
+    padding: 0 2rem 1rem;
+    margin: 0 -2rem;
+  }
+
+  .welcome-banner__events::-webkit-scrollbar {
+    display: none;
+  }
+
+  .welcome-banner__events > * {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    margin-right: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+  }
+
+  .welcome-banner__events > *:last-child {
+    margin-right: 0;
+  }
+}
+
+/* Enhanced Card Interaction */
+@media (hover: hover) {
+  .welcome-banner__events > *:hover {
+    transform: translateY(-4px);
+  }
 }

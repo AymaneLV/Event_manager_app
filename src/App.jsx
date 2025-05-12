@@ -73,8 +73,7 @@ function App() {
                 </ProtectedRoute>
               } 
             />
-
-            {/* Catch-all 404 Route (✅ Moved to end) */}
+            
             <Route path="*" element={<Error404 />} />
           </Routes>
         </main>

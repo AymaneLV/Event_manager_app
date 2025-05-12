@@ -1,4 +1,3 @@
-// src/components/home/WelcomeBanner.jsx
 import React from 'react';
 import EventCard from '../common/EventCard';
 import './WelcomeBanner.css';
@@ -40,7 +39,6 @@ const recentEvents = [
 const WelcomeBanner = () => {
   return (
     <section className="welcome-banner">
-      {/* Background Image */}
       <div className="welcome-banner__background">
         <img 
           src="/assets/images/banner_event.jpg" 
@@ -50,7 +48,6 @@ const WelcomeBanner = () => {
         <div className="welcome-banner__overlay"></div>
       </div>
 
-      {/* Content (Text + Cards) */}
       <div className="welcome-banner__content">
         <h1 className="welcome-banner__title">Discover Amazing Events</h1>
         <p className="welcome-banner__subtitle">
