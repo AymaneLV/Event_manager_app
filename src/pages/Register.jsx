@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import './Login.css';    
-import './Register.css';  
-
+import { useAuth } from '../contexts/AuthContext';
+import './Login.css';
+import './Register.css';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -10,10 +10,11 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { register } = useAuth();
 
-  // Get role from URL if available
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const urlRole = searchParams.get('role');
@@ -22,10 +23,9 @@ const Register = () => {
     }
   }, [location.search]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Basic validation
     if (!name || !email || !password) {
       setError('Please fill in all fields');
       return;
@@ -36,11 +36,19 @@ const Register = () => {
       return;
     }
 
-    // Simulate registration process
-    setTimeout(() => {
-      console.log('Registering with:', { name, email, password, role });
-      navigate('/login');
-    }, 800);
+    try {
+      setLoading(true);
+      setError('');
+      await register(email, password, {
+        name,
+        role
+      });
+      navigate('/');
+    } catch (err) {
+      setError(err.message || 'Failed to create account');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -121,8 +129,12 @@ const Register = () => {
             </div>
           </div>
           
-          <button type="submit" className="btn-primary">
-            Create Account
+          <button 
+            type="submit" 
+            className="btn-primary"
+            disabled={loading}
+          >
+            {loading ? 'Creating Account...' : 'Create Account'}
           </button>
         </form>
         
