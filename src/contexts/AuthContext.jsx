@@ -1,14 +1,21 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { supabase } from '../config/supabase';
+import React, { createContext, useContext, useReducer } from 'react';
 
-const AuthContext = createContext();
-
+// Initial state
 const initialState = {
   isAuthenticated: false,
   user: null,
   loading: true
 };
 
+// Dummy roles: 'user' or 'admin'
+const dummyUser = {
+  id: 1,
+  name: "Jane Doe",
+  email: "jane@example.com",
+  role: "user"
+};
+
+// Auth reducer
 function authReducer(state, action) {
   switch (action.type) {
     case 'LOGIN':
@@ -35,70 +42,50 @@ function authReducer(state, action) {
   }
 }
 
+// Create context
+const AuthContext = createContext();
+
+// Provider component
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  useEffect(() => {
-    // Check active session
-    const session = supabase.auth.getSession();
-    if (session?.user) {
-      dispatch({ type: 'LOGIN', payload: session.user });
-    } else {
+  // Simulate initial auth check
+  React.useEffect(() => {
+    setTimeout(() => {
       dispatch({ type: 'FINISH_LOADING' });
-    }
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session?.user) {
-        dispatch({ type: 'LOGIN', payload: session.user });
-      } else if (event === 'SIGNED_OUT') {
-        dispatch({ type: 'LOGOUT' });
-      }
-    });
-
-    return () => {
-      subscription?.unsubscribe();
-    };
+    }, 1000);
   }, []);
 
-  const login = async (email, password) => {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) throw error;
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const register = async (email, password, metadata = {}) => {
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: metadata
+  // Login function
+  const login = (email, password) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (email && password) {
+          dispatch({ type: 'LOGIN', payload: dummyUser });
+          resolve(true);
+        } else {
+          reject(new Error('Invalid credentials'));
         }
-      });
-
-      if (error) throw error;
-      return data;
-    } catch (error) {
-      throw error;
-    }
+      }, 800);
+    });
   };
 
-  const logout = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-    } catch (error) {
-      throw error;
-    }
+  // Logout function
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+  };
+
+  // Register function
+  const register = (name, email, password, role) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        dummyUser.role = role;
+        dummyUser.name = name;
+        dummyUser.email = email;
+        dispatch({ type: 'LOGIN', payload: dummyUser });
+        resolve(true);
+      }, 800);
+    });
   };
 
   return (
@@ -117,6 +104,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// Custom hook
 export const useAuth = () => {
   return useContext(AuthContext);
 };
