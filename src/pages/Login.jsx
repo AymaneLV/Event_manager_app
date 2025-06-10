@@ -1,34 +1,28 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Basic validation
     if (!email || !password) {
       setError('Please enter both email and password');
       return;
     }
 
-    try {
-      setLoading(true);
-      setError('');
-      await login(email, password);
+    // Simulate login process
+    setTimeout(() => {
+      // Dummy success
+      console.log('Logging in with:', { email, password });
       navigate('/');
-    } catch (err) {
-      setError(err.message || 'Failed to log in');
-    } finally {
-      setLoading(false);
-    }
+    }, 800);
   };
 
   return (
@@ -69,12 +63,8 @@ const Login = () => {
           </div>
           
           <div className="auth-actions">
-            <button 
-              type="submit" 
-              className="btn-primary"
-              disabled={loading}
-            >
-              {loading ? 'Logging in...' : 'Log In'}
+            <button type="submit" className="btn-primary">
+              Log In
             </button>
             <Link to="/forgot-password" className="auth-link">
               Forgot password?
